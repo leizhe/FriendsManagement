@@ -1,7 +1,7 @@
 
 
 ## 开发框架
-* Go、[beego](https://beego.me/)、[SwaggerUI]
+* Go、[beego](https://beego.me/)、SwaggerUI
 * PostgreSql
 
 
@@ -22,7 +22,7 @@ Updates" etc.
 ```java
   go get github.com/astaxie/beego
 ``` 
-* 在项目文件夹下打开CMD，使用bee run运行
+* 在项目文件夹下打开CMD，使用bee run命令运行
 
 * 运行后在浏览器中输入地址：http://ip:port/swagger/
 

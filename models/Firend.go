@@ -39,14 +39,3 @@ func GetFirendsByUserId(userId int) (v []Firend, n int64, err error) {
 	}
 	return nil, 0, err
 }
-
-// // GetFirendById retrieves Firend by Id. Returns error if
-// // Id doesn't exist
-// func GetFirendById(id int) (v *Firend, err error) {
-// 	o := orm.NewOrm()
-// 	v = &Firend{Id: id}
-// 	if err = o.Read(v); err == nil {
-// 		return v, nil
-// 	}
-// 	return nil, err
-// }
