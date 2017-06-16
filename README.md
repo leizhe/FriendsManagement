@@ -13,7 +13,7 @@ Usually, applications would start with features like "Friend", "Unfriend", "Bloc
 Updates" etc.
 
 ## 如何运行
-* 安装并配置[GO语言环境](http://www.runoob.com/go/go-environment.html)
+* 安装并配置[Go语言环境](http://www.runoob.com/go/go-environment.html)
 * 安装[BeeGo](https://beego.me/)
 ```java
   go get github.com/astaxie/beego
