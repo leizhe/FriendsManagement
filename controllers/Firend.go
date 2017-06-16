@@ -90,15 +90,7 @@ func (c *FirendController) GetCommonFriends() {
 			user1Friend = v
 			if v, _, err := GetFirendsByEmail(emails[1]); err == nil {
 				user2Friend = v
-				for _, v1 := range user1Friend {
-
-					for _, v2 := range user2Friend {
-						if strings.Compare(v1, v2) == 0 {
-							commoFrinds = append(commoFrinds, v1)
-						}
-					}
-
-				}
+				commoFrinds = CommonFriends(user1Friend, user2Friend)
 				output.Success = true
 				output.Count = len(commoFrinds)
 				output.Friends = commoFrinds
@@ -113,6 +105,20 @@ func (c *FirendController) GetCommonFriends() {
 
 	}
 	c.ServeJSON()
+}
+
+//CommonFriends ...
+func CommonFriends(user1Friend []string, user2Friend []string) (result []string) {
+	for _, v1 := range user1Friend {
+		for _, v2 := range user2Friend {
+			if strings.Compare(v1, v2) == 0 {
+				result = append(result, v1)
+			}
+		}
+
+	}
+
+	return result
 }
 
 // GetEmailsByMyFirends ...
