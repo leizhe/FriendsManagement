@@ -1,8 +1,8 @@
 
 
 ## 开发框架
-* Go、[beego](https://beego.me/)、SwaggerUI
-* PostgreSql
+* Go、[BeeGo](https://beego.me/)、SwaggerUI
+* [PostgreSql](https://www.postgresql.org/)
 
 
 ## 项目背景
@@ -13,12 +13,12 @@ Usually, applications would start with features like "Friend", "Unfriend", "Bloc
 Updates" etc.
 
 ## 如何运行
-* 安装并配置GO语言环境
-* 安装BeeGo
+* 安装并配置[GO语言环境](http://www.runoob.com/go/go-environment.html)
+* 安装[BeeGo](https://beego.me/)
 ```java
   go get github.com/astaxie/beego
 ``` 
-* 安装PostgreSql
+* 安装[PostgreSql](https://www.postgresql.org/)
 * 在PostgreSql建立数据库，然后在数据库中运行文件夹dbScript下的DB_Init.sql脚本初始化数据库
 * 修改main.go文件的连接字符串
 ```java
