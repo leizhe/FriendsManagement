@@ -57,6 +57,27 @@ func (c *SubscribeController) BlockSubscribe() {
 	c.ServeJSON()
 }
 
+// RetrieveSubscribe ...
+// @Title RetrieveSubscribe
+// @Description retrieve all email addresses that can receive updates from an email address.
+// @Param	body		body 	dtos.RetrieveSubscribeInput	true
+// @router /RetrieveSubscribe [post]
+func (c *SubscribeController) RetrieveSubscribe() {
+	var input dtos.RetrieveSubscribeInput
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &input); err == nil {
+		if v, err := GetRetrieveSubscriberIds(input); err == nil {
+			if output, err := GetRetrieveSubscribeResult(v); err == nil {
+				c.Data["json"] = output
+			} else {
+				c.Data["json"] = err.Error()
+			}
+		}
+	} else {
+		c.Data["json"] = err.Error()
+	}
+	c.ServeJSON()
+}
+
 // BlackandWhiteSubscribe ...
 func BlackandWhiteSubscribe(input dtos.SubscribeInput, status int) (result dtos.BaseResult, err error) {
 	var (
@@ -72,31 +93,16 @@ func BlackandWhiteSubscribe(input dtos.SubscribeInput, status int) (result dtos.
 
 }
 
-// RetrieveSubscribe ...
-// @Title RetrieveSubscribe
-// @Description retrieve all email addresses that can receive updates from an email address.
-// @Param	body		body 	dtos.RetrieveSubscribeInput	true
-// @router /RetrieveSubscribe [post]
-func (c *SubscribeController) RetrieveSubscribe() {
-	var input dtos.RetrieveSubscribeInput
-	var output dtos.RetrieveSubscribeOutput
-	eligibilityIds := []int64{}
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &input); err == nil {
-		if v, err := GetRetrieveSubscriberIds(input); err == nil {
-			eligibilityIds = v
-		}
-		if len(eligibilityIds) > 0 {
-			output.Success = true
-			output.Recipients = GetEmailsByUserIds(eligibilityIds)
-			c.Data["json"] = output
-		} else {
-			c.Data["json"] = errors.New("Error: No subscriber")
-		}
-
+// GetRetrieveSubscribeResult ...
+func GetRetrieveSubscribeResult(ids []int64) (result dtos.RetrieveSubscribeOutput, err error) {
+	if len(ids) > 0 {
+		result.Success = true
+		result.Recipients = GetEmailsByUserIds(ids)
 	} else {
-		c.Data["json"] = err.Error()
+		return result, errors.New("Error: No subscriber")
 	}
-	c.ServeJSON()
+
+	return result, err
 }
 
 // GetRetrieveSubscriberIds ...

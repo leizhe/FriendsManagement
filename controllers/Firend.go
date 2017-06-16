@@ -31,11 +31,6 @@ func (c *FirendController) URLMapping() {
 // @router /AddFriends [post]
 func (c *FirendController) AddFriend() {
 	var input dtos.AddFirendInput
-	//var result dtos.BaseResult
-	// var (
-	// 	u1id int64
-	// 	u2id int64
-	// )
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &input); err == nil {
 		emails := &input.Friends
 		u1 := models.User{Email: emails[0]}
@@ -78,42 +73,6 @@ func (c *FirendController) GetAllFriends() {
 	c.ServeJSON()
 }
 
-// GetEmailsByMyFirends ...
-func GetEmailsByMyFirends(firends []models.Firend) (v []string) {
-	ids := []int64{}
-	for _, v := range firends {
-		ids = append(ids, v.FirendId)
-
-	}
-	result := []string{}
-	if users, _, err := models.GetUsersByIds(ids); err == nil {
-		for _, v := range users {
-			result = append(result, v.Email)
-
-		}
-	}
-
-	return result
-}
-
-// GetFirendsByEmail ...
-func GetFirendsByEmail(mail string) (v []string, n int64, err error) {
-	result := []string{}
-	num := n
-	if v, err := models.GetUserByEmail(mail); err == nil {
-		id := v.Id
-		if v, n, err := models.GetFirendsByUserId(id); err == nil {
-			result = GetEmailsByMyFirends(v)
-			num = n
-		} else {
-			return nil, num, errors.New("Error: Get firends fail")
-		}
-	} else {
-		return nil, num, errors.New("Error: This Email does not exist")
-	}
-	return result, num, err
-}
-
 // GetCommonFriends ...
 // @Title GetCommonFriends
 // @Description retrieve the common friends list between two email addresses.
@@ -154,6 +113,42 @@ func (c *FirendController) GetCommonFriends() {
 
 	}
 	c.ServeJSON()
+}
+
+// GetEmailsByMyFirends ...
+func GetEmailsByMyFirends(firends []models.Firend) (v []string) {
+	ids := []int64{}
+	for _, v := range firends {
+		ids = append(ids, v.FirendId)
+
+	}
+	result := []string{}
+	if users, _, err := models.GetUsersByIds(ids); err == nil {
+		for _, v := range users {
+			result = append(result, v.Email)
+
+		}
+	}
+
+	return result
+}
+
+// GetFirendsByEmail ...
+func GetFirendsByEmail(mail string) (result []string, num int64, err error) {
+	// result := []string{}
+	// num := n
+	if v, err := models.GetUserByEmail(mail); err == nil {
+		id := v.Id
+		if v, n, err := models.GetFirendsByUserId(id); err == nil {
+			result = GetEmailsByMyFirends(v)
+			num = n
+		} else {
+			return nil, num, errors.New("Error: Get firends fail")
+		}
+	} else {
+		return nil, num, errors.New("Error: This Email does not exist")
+	}
+	return result, num, err
 }
 
 // CheckBlocksSubscribe ...
