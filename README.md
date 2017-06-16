@@ -13,16 +13,19 @@ Usually, applications would start with features like "Friend", "Unfriend", "Bloc
 Updates" etc.
 
 ## 如何运行
-* 在PostgreSql建立数据库，然后在数据库中运行文件夹dbScript下的DB_Init.sql脚本
-* 修改main.go文件的连接字符串
-```java
-  "postgres://[username]:[password]@[IP]:[PORT]/[DbName]?sslmode=disable"
-``` 
+* 安装并配置GO语言环境
 * 安装BeeGo
 ```java
   go get github.com/astaxie/beego
 ``` 
-* 在项目文件夹下打开CMD，使用bee run命令运行
+* 安装PostgreSql
+* 在PostgreSql建立数据库，然后在数据库中运行文件夹dbScript下的DB_Init.sql脚本初始化数据库
+* 修改main.go文件的连接字符串
+```java
+  "postgres://[username]:[password]@[IP]:[PORT]/[DbName]?sslmode=disable"
+``` 
+
+* 在项目文件夹FriendsManagement下打开CMD，使用bee run命令运行
 
 * 运行后在浏览器中输入地址：http://ip:port/swagger/
 
