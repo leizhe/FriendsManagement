@@ -11,13 +11,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// FirendController --- Friend API
-type FirendController struct {
+// FriendController --- Friend API
+type FriendController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *FirendController) URLMapping() {
+func (c *FriendController) URLMapping() {
 	c.Mapping("AddFriend", c.AddFriend)
 	c.Mapping("GetAllFriends", c.GetAllFriends)
 	c.Mapping("GetCommonFriends", c.GetCommonFriends)
@@ -26,11 +26,11 @@ func (c *FirendController) URLMapping() {
 // AddFriend ...
 // @Title AddFriend
 // @Description create a friend connection between two email addresses
-// @Param	body		body 	dtos.AddFirendInput	true
+// @Param	body		body 	dtos.AddFriendInput	true
 // @Success
 // @router /AddFriends [post]
-func (c *FirendController) AddFriend() {
-	var input dtos.AddFirendInput
+func (c *FriendController) AddFriend() {
+	var input dtos.AddFriendInput
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &input); err == nil {
 		emails := &input.Friends
 		u1 := models.User{Email: emails[0]}
@@ -55,12 +55,12 @@ func (c *FirendController) AddFriend() {
 // @Description retrieve the friends list for an email address
 // @Param	body		body 	dtos.GetAllFriendsInput 	true
 // @router /GetFriends [post]
-func (c *FirendController) GetAllFriends() {
+func (c *FriendController) GetAllFriends() {
 	var input dtos.GetAllFriendsInput
 	var output dtos.GetAllFriendsOutput
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &input); err == nil {
 		email := input.Email
-		if v, n, err := GetFirendsByEmail(email); err == nil {
+		if v, n, err := GetFriendsByEmail(email); err == nil {
 			output.Success = true
 			output.Count = n
 			output.Friends = v
@@ -78,7 +78,7 @@ func (c *FirendController) GetAllFriends() {
 // @Description retrieve the common friends list between two email addresses.
 // @Param	body		body 	dtos.GetCommonFriendsInput 	true
 // @router /GetCommonFriends [post]
-func (c *FirendController) GetCommonFriends() {
+func (c *FriendController) GetCommonFriends() {
 	var input dtos.GetCommonFriendsInput
 	var output dtos.GetCommonFriendsOutput
 	user1Friend := []string{}
@@ -86,9 +86,9 @@ func (c *FirendController) GetCommonFriends() {
 	commoFrinds := []string{}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &input); err == nil {
 		emails := &input.Friends
-		if v, _, err := GetFirendsByEmail(emails[0]); err == nil {
+		if v, _, err := GetFriendsByEmail(emails[0]); err == nil {
 			user1Friend = v
-			if v, _, err := GetFirendsByEmail(emails[1]); err == nil {
+			if v, _, err := GetFriendsByEmail(emails[1]); err == nil {
 				user2Friend = v
 				commoFrinds = CommonFriends(user1Friend, user2Friend)
 				output.Success = true
@@ -121,11 +121,11 @@ func CommonFriends(user1Friend []string, user2Friend []string) (result []string)
 	return result
 }
 
-// GetEmailsByMyFirends ...
-func GetEmailsByMyFirends(firends []models.Firend) (v []string) {
+// GetEmailsByMyFriends ...
+func GetEmailsByMyFriends(friends []models.Friend) (v []string) {
 	ids := []int64{}
-	for _, v := range firends {
-		ids = append(ids, v.FirendId)
+	for _, v := range friends {
+		ids = append(ids, v.FriendId)
 
 	}
 	result := []string{}
@@ -139,17 +139,15 @@ func GetEmailsByMyFirends(firends []models.Firend) (v []string) {
 	return result
 }
 
-// GetFirendsByEmail ...
-func GetFirendsByEmail(mail string) (result []string, num int64, err error) {
-	// result := []string{}
-	// num := n
+// GetFriendsByEmail ...
+func GetFriendsByEmail(mail string) (result []string, num int64, err error) {
 	if v, err := models.GetUserByEmail(mail); err == nil {
 		id := v.Id
-		if v, n, err := models.GetFirendsByUserId(id); err == nil {
-			result = GetEmailsByMyFirends(v)
+		if v, n, err := models.GetFriendsByUserId(id); err == nil {
+			result = GetEmailsByMyFriends(v)
 			num = n
 		} else {
-			return nil, num, errors.New("Error: Get firends fail")
+			return nil, num, errors.New("Error: Get friends fail")
 		}
 	} else {
 		return nil, num, errors.New("Error: This Email does not exist")
@@ -180,8 +178,8 @@ func CheckAndAddFriend(u1id int64, u2id int64) (r dtos.BaseResult, err error) {
 	var result dtos.BaseResult
 	tag := CheckBlocksSubscribe(u1id, u2id)
 	if !tag {
-		friend := models.Firend{UserId: u1id, FirendId: u2id}
-		if _, _, err := models.AddFirend(&friend); err == nil {
+		friend := models.Friend{UserId: u1id, FriendId: u2id}
+		if _, _, err := models.AddFriend(&friend); err == nil {
 			result.Success = true
 
 		}

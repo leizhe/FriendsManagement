@@ -33,7 +33,7 @@ Updates" etc.
 
 ## API说明
 
-#### 1 /Firend/AddFriends   [`POST`] 
+#### 1 /Friend/AddFriends   [`POST`] 
 
 *Create a friend connection between two email addresses.*
 
@@ -53,7 +53,7 @@ Updates" etc.
   }
 ```  
 
-#### 2 /Firend/GetFriends    [`POST`] 
+#### 2 /Friend/GetFriends    [`POST`] 
 
 *Retrieve the friends list for an email address.*
 
@@ -74,7 +74,7 @@ Updates" etc.
   }
 ```  
 
-#### 3 /Firend/GetCommonFriends    [`POST`] 
+#### 3 /Friend/GetCommonFriends    [`POST`] 
 
 *Retrieve the common friends list between two email addresses.*
 

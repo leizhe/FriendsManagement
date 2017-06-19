@@ -9,20 +9,20 @@
     },
     "basePath": "/v1",
     "paths": {
-        "/Firend/AddFriends": {
+        "/Friend/AddFriends": {
             "post": {
                 "tags": [
-                    "Firend"
+                    "Friend"
                 ],
                 "description": "create a friend connection between two email addresses",
-                "operationId": "FirendController.AddFriend",
+                "operationId": "FriendController.AddFriend",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
                         "description": "true",
                         "schema": {
-                            "$ref": "#/definitions/dtos.AddFirendInput"
+                            "$ref": "#/definitions/dtos.AddFriendInput"
                         }
                     }
                 ],
@@ -31,13 +31,13 @@
                 }
             }
         },
-        "/Firend/GetCommonFriends": {
+        "/Friend/GetCommonFriends": {
             "post": {
                 "tags": [
-                    "Firend"
+                    "Friend"
                 ],
                 "description": "retrieve the common friends list between two email addresses.",
-                "operationId": "FirendController.GetCommonFriends",
+                "operationId": "FriendController.GetCommonFriends",
                 "parameters": [
                     {
                         "in": "body",
@@ -50,13 +50,13 @@
                 ]
             }
         },
-        "/Firend/GetFriends": {
+        "/Friend/GetFriends": {
             "post": {
                 "tags": [
-                    "Firend"
+                    "Friend"
                 ],
                 "description": "retrieve the friends list for an email address",
-                "operationId": "FirendController.GetAllFriends",
+                "operationId": "FriendController.GetAllFriends",
                 "parameters": [
                     {
                         "in": "body",
@@ -131,8 +131,8 @@
         }
     },
     "definitions": {
-        "dtos.AddFirendInput": {
-            "title": "AddFirendInput",
+        "dtos.AddFriendInput": {
+            "title": "AddFriendInput",
             "type": "object",
             "properties": {
                 "Friends": {}
@@ -185,8 +185,8 @@
             "description": "SubscribeController --- Subscribe API\n"
         },
         {
-            "name": "Firend",
-            "description": "FirendController --- Friend API\n"
+            "name": "Friend",
+            "description": "FriendController --- Friend API\n"
         }
     ]
 }

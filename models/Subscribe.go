@@ -29,7 +29,7 @@ func AddSubscribe(m *Subscribe) (created bool, id int64, err error) {
 	return
 }
 
-// GetSubscribeByUserIDandStatus retrieves Firends by userID status. Returns error if
+// GetSubscribeByUserIDandStatus retrieves Friends by userID status. Returns error if
 // Id doesn't exist
 func GetSubscribeByUserIDandStatus(userID int, status int) (v []Subscribe, n int64, err error) {
 	o := orm.NewOrm()

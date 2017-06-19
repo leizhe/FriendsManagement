@@ -184,7 +184,7 @@ func GetSubscriberIdsByEmail(email string) (v []int64, err error) {
 				ids = append(ids, v.UserId)
 			}
 		} else {
-			return nil, errors.New("Error: Get firends fail")
+			return nil, errors.New("Error: Get friends fail")
 		}
 	} else {
 		return nil, errors.New("Error: This Email does not exist")
@@ -196,12 +196,12 @@ func GetSubscriberIdsByEmail(email string) (v []int64, err error) {
 func GetFriendIdsByEmail(email string) (ids []int64, err error) {
 	if v, err := models.GetUserByEmail(email); err == nil {
 		id := v.Id
-		if v, _, err := models.GetFirendsByUserId(id); err == nil {
+		if v, _, err := models.GetFriendsByUserId(id); err == nil {
 			for _, v := range v {
-				ids = append(ids, v.FirendId)
+				ids = append(ids, v.FriendId)
 			}
 		} else {
-			return nil, errors.New("Error: Get firends fail")
+			return nil, errors.New("Error: Get friends fail")
 		}
 	} else {
 		return nil, errors.New("Error: This Email does not exist")

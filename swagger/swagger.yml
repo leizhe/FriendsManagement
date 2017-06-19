@@ -6,38 +6,38 @@ info:
     email: leizhe@chinasofti.com
 basePath: /v1
 paths:
-  /Firend/AddFriends:
+  /Friend/AddFriends:
     post:
       tags:
-      - Firend
+      - Friend
       description: create a friend connection between two email addresses
-      operationId: FirendController.AddFriend
+      operationId: FriendController.AddFriend
       parameters:
       - in: body
         name: body
         description: "true"
         schema:
-          $ref: '#/definitions/dtos.AddFirendInput'
+          $ref: '#/definitions/dtos.AddFriendInput'
       responses:
         "": {}
-  /Firend/GetCommonFriends:
+  /Friend/GetCommonFriends:
     post:
       tags:
-      - Firend
+      - Friend
       description: retrieve the common friends list between two email addresses.
-      operationId: FirendController.GetCommonFriends
+      operationId: FriendController.GetCommonFriends
       parameters:
       - in: body
         name: body
         description: "true"
         schema:
           $ref: '#/definitions/dtos.GetCommonFriendsInput'
-  /Firend/GetFriends:
+  /Friend/GetFriends:
     post:
       tags:
-      - Firend
+      - Friend
       description: retrieve the friends list for an email address
-      operationId: FirendController.GetAllFriends
+      operationId: FriendController.GetAllFriends
       parameters:
       - in: body
         name: body
@@ -84,8 +84,8 @@ paths:
         schema:
           $ref: '#/definitions/dtos.RetrieveSubscribeInput'
 definitions:
-  dtos.AddFirendInput:
-    title: AddFirendInput
+  dtos.AddFriendInput:
+    title: AddFriendInput
     type: object
     properties:
       Friends: {}
@@ -120,6 +120,6 @@ tags:
 - name: Subscribe
   description: |
     SubscribeController --- Subscribe API
-- name: Firend
+- name: Friend
   description: |
-    FirendController --- Friend API
+    FriendController --- Friend API

@@ -1,5 +1,5 @@
 package dtos
 
-type AddFirendInput struct {
+type AddFriendInput struct {
 	Friends [2]string
 }

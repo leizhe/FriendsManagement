@@ -19,9 +19,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/Firend",
+		beego.NSNamespace("/Friend",
 			beego.NSInclude(
-				&controllers.FirendController{},
+				&controllers.FriendController{},
 			),
 		),
 	)

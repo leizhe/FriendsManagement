@@ -6,21 +6,21 @@ import (
 
 func init() {
 
-	beego.GlobalControllerRouter["FriendsManagement/controllers:FirendController"] = append(beego.GlobalControllerRouter["FriendsManagement/controllers:FirendController"],
+	beego.GlobalControllerRouter["FriendsManagement/controllers:FriendController"] = append(beego.GlobalControllerRouter["FriendsManagement/controllers:FriendController"],
 		beego.ControllerComments{
 			Method: "AddFriend",
 			Router: `/AddFriends`,
 			AllowHTTPMethods: []string{"post"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["FriendsManagement/controllers:FirendController"] = append(beego.GlobalControllerRouter["FriendsManagement/controllers:FirendController"],
+	beego.GlobalControllerRouter["FriendsManagement/controllers:FriendController"] = append(beego.GlobalControllerRouter["FriendsManagement/controllers:FriendController"],
 		beego.ControllerComments{
 			Method: "GetAllFriends",
 			Router: `/GetFriends`,
 			AllowHTTPMethods: []string{"post"},
 			Params: nil})
 
-	beego.GlobalControllerRouter["FriendsManagement/controllers:FirendController"] = append(beego.GlobalControllerRouter["FriendsManagement/controllers:FirendController"],
+	beego.GlobalControllerRouter["FriendsManagement/controllers:FriendController"] = append(beego.GlobalControllerRouter["FriendsManagement/controllers:FriendController"],
 		beego.ControllerComments{
 			Method: "GetCommonFriends",
 			Router: `/GetCommonFriends`,
