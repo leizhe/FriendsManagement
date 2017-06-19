@@ -27,7 +27,7 @@ func (c *FriendController) URLMapping() {
 // @Title AddFriend
 // @Description create a friend connection between two email addresses
 // @Param	body		body 	dtos.AddFriendInput	true
-// @Success
+// @Success 200 {object} dtos.BaseResult
 // @router /AddFriends [post]
 func (c *FriendController) AddFriend() {
 	var input dtos.AddFriendInput
@@ -54,6 +54,7 @@ func (c *FriendController) AddFriend() {
 // @Title GetAllFriends
 // @Description retrieve the friends list for an email address
 // @Param	body		body 	dtos.GetAllFriendsInput 	true
+// @Success 200 {object}  dtos.GetAllFriendsOutput
 // @router /GetFriends [post]
 func (c *FriendController) GetAllFriends() {
 	var input dtos.GetAllFriendsInput
@@ -77,6 +78,7 @@ func (c *FriendController) GetAllFriends() {
 // @Title GetCommonFriends
 // @Description retrieve the common friends list between two email addresses.
 // @Param	body		body 	dtos.GetCommonFriendsInput 	true
+// @Success 200 {object}  dtos.GetCommonFriendsOutput
 // @router /GetCommonFriends [post]
 func (c *FriendController) GetCommonFriends() {
 	var input dtos.GetCommonFriendsInput

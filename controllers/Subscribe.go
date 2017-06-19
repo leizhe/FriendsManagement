@@ -26,7 +26,7 @@ func (c *SubscribeController) URLMapping() {
 // @Title AddSubscribe
 // @Description subscribe to updates from an email address
 // @Param	body		body 	dtos.SubscribeInput	true
-// @Success
+// @Success 200 {object} dtos.BaseResult
 // @router /AddSubscribe [post]
 func (c *SubscribeController) AddSubscribe() {
 	var input dtos.SubscribeInput
@@ -44,6 +44,7 @@ func (c *SubscribeController) AddSubscribe() {
 // @Title BlockSubscribe
 // @Description block updates from an email address.
 // @Param	body		body 	dtos.SubscribeInput	true
+// @Success 200 {object} dtos.BaseResult
 // @router /BlockSubscribe [post]
 func (c *SubscribeController) BlockSubscribe() {
 	var input dtos.SubscribeInput
@@ -61,6 +62,7 @@ func (c *SubscribeController) BlockSubscribe() {
 // @Title RetrieveSubscribe
 // @Description retrieve all email addresses that can receive updates from an email address.
 // @Param	body		body 	dtos.RetrieveSubscribeInput	true
+// @Success 200 {object} dtos.RetrieveSubscribeOutput
 // @router /RetrieveSubscribe [post]
 func (c *SubscribeController) RetrieveSubscribe() {
 	var input dtos.RetrieveSubscribeInput

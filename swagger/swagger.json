@@ -1,6 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
+        "title": "FriendsManagement API",
         "description": "FriendsManagement API",
         "version": "1.0.0",
         "contact": {
@@ -27,7 +28,12 @@
                     }
                 ],
                 "responses": {
-                    "": {}
+                    "200": {
+                        "description": "responses",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.BaseResult"
+                        }
+                    }
                 }
             }
         },
@@ -47,7 +53,15 @@
                             "$ref": "#/definitions/dtos.GetCommonFriendsInput"
                         }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                         "description": "responses",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.GetCommonFriendsOutput"
+                        }
+                    }
+                }
             }
         },
         "/Friend/GetFriends": {
@@ -66,7 +80,15 @@
                             "$ref": "#/definitions/dtos.GetAllFriendsInput"
                         }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                         "description": "responses",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.GetAllFriendsOutput"
+                        }
+                    }
+                }
             }
         },
         "/Subscribe/AddSubscribe": {
@@ -87,7 +109,12 @@
                     }
                 ],
                 "responses": {
-                    "": {}
+                    "200": {
+                         "description": "responses",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.BaseResult"
+                        }
+                    }
                 }
             }
         },
@@ -107,7 +134,15 @@
                             "$ref": "#/definitions/dtos.SubscribeInput"
                         }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                         "description": "responses",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.BaseResult"
+                        }
+                    }
+                }
             }
         },
         "/Subscribe/RetrieveSubscribe": {
@@ -126,7 +161,15 @@
                             "$ref": "#/definitions/dtos.RetrieveSubscribeInput"
                         }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                         "description": "responses",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.RetrieveSubscribeOutput"
+                        }
+                    }
+                }
             }
         }
     },
@@ -135,7 +178,16 @@
             "title": "AddFriendInput",
             "type": "object",
             "properties": {
-                "Friends": {}
+                "Friends":  {}
+            }
+        },
+        "dtos.BaseResult": {
+            "title": "BaseResult",
+            "type": "object",
+            "properties": {
+                "Success": {
+                    "type": "boolean"
+                }
             }
         },
         "dtos.GetAllFriendsInput": {
@@ -147,11 +199,39 @@
                 }
             }
         },
+        "dtos.GetAllFriendsOutput": {
+            "title": "BaseResult",
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Friends": {},
+                "Success": {
+                    "type": "boolean"
+                }
+            }
+        },
         "dtos.GetCommonFriendsInput": {
             "title": "GetCommonFriendsInput",
             "type": "object",
             "properties": {
-                "Friends": {}
+                "Friends":  {}
+            }
+        },
+        "dtos.GetCommonFriendsOutput": {
+            "title": "BaseResult",
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Friends": {},
+                "Success": {
+                    "type": "boolean"
+                }
             }
         },
         "dtos.RetrieveSubscribeInput": {
@@ -163,6 +243,16 @@
                 },
                 "Text": {
                     "type": "string"
+                }
+            }
+        },
+        "dtos.RetrieveSubscribeOutput": {
+            "title": "BaseResult",
+            "type": "object",
+            "properties": {
+                "Recipients": {},
+                "Success": {
+                    "type": "boolean"
                 }
             }
         },

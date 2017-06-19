@@ -1,5 +1,6 @@
 swagger: "2.0"
 info:
+  title: FriendsManagement API
   description: FriendsManagement API
   version: 1.0.0
   contact:
@@ -19,7 +20,9 @@ paths:
         schema:
           $ref: '#/definitions/dtos.AddFriendInput'
       responses:
-        "": {}
+        "200":
+          schema:
+            $ref: '#/definitions/dtos.BaseResult'
   /Friend/GetCommonFriends:
     post:
       tags:
@@ -32,6 +35,10 @@ paths:
         description: "true"
         schema:
           $ref: '#/definitions/dtos.GetCommonFriendsInput'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/dtos.GetCommonFriendsOutput'
   /Friend/GetFriends:
     post:
       tags:
@@ -44,6 +51,10 @@ paths:
         description: "true"
         schema:
           $ref: '#/definitions/dtos.GetAllFriendsInput'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/dtos.GetAllFriendsOutput'
   /Subscribe/AddSubscribe:
     post:
       tags:
@@ -57,7 +68,9 @@ paths:
         schema:
           $ref: '#/definitions/dtos.SubscribeInput'
       responses:
-        "": {}
+        "200":
+          schema:
+            $ref: '#/definitions/dtos.BaseResult'
   /Subscribe/BlockSubscribe:
     post:
       tags:
@@ -70,6 +83,10 @@ paths:
         description: "true"
         schema:
           $ref: '#/definitions/dtos.SubscribeInput'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/dtos.BaseResult'
   /Subscribe/RetrieveSubscribe:
     post:
       tags:
@@ -83,23 +100,53 @@ paths:
         description: "true"
         schema:
           $ref: '#/definitions/dtos.RetrieveSubscribeInput'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/dtos.RetrieveSubscribeOutput'
 definitions:
   dtos.AddFriendInput:
     title: AddFriendInput
     type: object
     properties:
       Friends: {}
+  dtos.BaseResult:
+    title: BaseResult
+    type: object
+    properties:
+      Success:
+        type: boolean
   dtos.GetAllFriendsInput:
     title: GetAllFriendsInput
     type: object
     properties:
       Email:
         type: string
+  dtos.GetAllFriendsOutput:
+    title: BaseResult
+    type: object
+    properties:
+      Count:
+        type: integer
+        format: int64
+      Friends: {}
+      Success:
+        type: boolean
   dtos.GetCommonFriendsInput:
     title: GetCommonFriendsInput
     type: object
     properties:
       Friends: {}
+  dtos.GetCommonFriendsOutput:
+    title: BaseResult
+    type: object
+    properties:
+      Count:
+        type: integer
+        format: int64
+      Friends: {}
+      Success:
+        type: boolean
   dtos.RetrieveSubscribeInput:
     title: RetrieveSubscribeInput
     type: object
@@ -108,6 +155,13 @@ definitions:
         type: string
       Text:
         type: string
+  dtos.RetrieveSubscribeOutput:
+    title: BaseResult
+    type: object
+    properties:
+      Recipients: {}
+      Success:
+        type: boolean
   dtos.SubscribeInput:
     title: SubscribeInput
     type: object

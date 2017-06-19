@@ -1,5 +1,5 @@
 // @APIVersion 1.0.0
-// @FriendsManagement API
+// @Title FriendsManagement API
 // @Description FriendsManagement API
 // @Contact leizhe@chinasofti.com
 package routers
