@@ -3,3 +3,6 @@
 /debug
 /FriendsManagement.exe
 /lastupdate.tmp
+/Godeps
+/vendor
+/manifest.yml
